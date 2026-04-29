@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Happy Birthday Nomita 🎂</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Poppins:wght@300;400;600;700&family=Hind+Siliguri:wght@300;400&family=Pacifico&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;}
+body{font-family:'Poppins',sans-serif;color:#fff;background:#05030f;}
+
+/* ─── TOP NAV ─── */
+#nav{position:fixed;top:0;left:0;right:0;height:56px;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:rgba(0,0,0,.45);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07);}
+#nav-logo{font-family:'Pacifico',cursive;font-size:1.05rem;background:linear-gradient(90deg,#b388ff,#f5576c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;}
+#nav-tabs{display:flex;gap:4px;flex-shrink:0;}
+.nav-tab{background:none;border:none;color:rgba(255,255,255,.4);font-family:'Poppins',sans-serif;font-size:.78rem;padding:6px 12px;border-radius:20px;cursor:pointer;transition:color .2s,background .2s;white-space:nowrap;}
+.nav-tab.active{color:#fff;background:rgba(255,255,255,.12);}
+.nav-tab:hover:not(.active){color:rgba(255,255,255,.7);}
+#nav-music{background:none;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.5);border-radius:50%;width:36px;height:36px;min-width:36px;cursor:pointer;font-size:.9rem;transition:background .2s;}
+#nav-music:hover{background:rgba(255,255,255,.1);}
+
+/* ─── BOTTOM NAV (mobile only) ─── */
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:62px;z-index:100;background:rgba(5,3,15,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-top:1px solid rgba(255,255,255,.09);align-items:center;justify-content:space-around;padding:0 4px;}
+.bnav-tab{background:none;border:none;color:rgba(255,255,255,.38);font-family:'Poppins',sans-serif;font-size:.6rem;letter-spacing:.02em;padding:6px 8px;display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;transition:color .25s;flex:1;min-width:0;}
+.bnav-icon{font-size:1.35rem;line-height:1;transition:transform .25s,filter .25s;}
+.bnav-tab.active{color:#fff;}
+.bnav-tab.active .bnav-icon{transform:translateY(-3px) scale(1.12);filter:drop-shadow(0 0 8px rgba(179,136,255,.9));}
+
+/* ─── PHOTO COLLAGE BACKGROUND ─── */
+#photo-bg{position:fixed;inset:0;z-index:-1;overflow:hidden;}
+.pb-wrap{position:absolute;inset:-8%;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:6px;transform:rotate(2deg);}
+.pb-cell{overflow:hidden;border-radius:6px;}
+.pb-cell img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(0.8) brightness(1.0);}
+/* alternate cells: slight scale for depth variation */
+.pb-cell:nth-child(even) img{object-position:center center;transform:scale(1.06);}
+/* dark purple-tinted overlay preserves the existing color mood */
+#pb-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(20,0,45,.58) 0%,rgba(5,3,15,.55) 50%,rgba(15,0,35,.60) 100%);}
+
+/* ─── PAGES CONTAINER ─── */
+#pages{position:fixed;inset:0;top:56px;}
+.page{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;opacity:0;pointer-events:none;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;padding-bottom:32px;}
+.page.active{opacity:1;pointer-events:auto;transform:translateY(0);}
+
+/* ════════════════════════════════════
+   PAGE 1 — WELCOME
+════════════════════════════════════ */
+#p1{background:radial-gradient(ellipse at 40% 30%,rgba(30,0,64,.60) 0%,rgba(5,3,15,.50) 65%);}
+#p1-canvas{position:absolute;inset:0;z-index:0;}
+.p1-content{position:relative;z-index:1;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;}
+.p1-badge{font-size:.7rem;font-weight:600;letter-spacing:.15em;color:rgba(255,255,255,.35);text-transform:uppercase;margin-bottom:20px;animation:fadeIn 1s ease .3s both;}
+.p1-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,16vw,7rem);line-height:1;background:linear-gradient(135deg,#c8b8ff 0%,#f5576c 50%,#fee140 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fadeIn 1s ease .5s both,nameGlow 3s ease-in-out 1.5s infinite alternate;}
+@keyframes nameGlow{0%{filter:drop-shadow(0 0 20px rgba(200,184,255,.3));}100%{filter:drop-shadow(0 0 40px rgba(245,87,108,.4));}}
+.p1-subtitle{font-size:clamp(.95rem,3.5vw,1.4rem);color:rgba(255,255,255,.55);font-weight:300;margin-top:14px;animation:fadeIn 1s ease .8s both;}
+.p1-date{margin-top:10px;font-size:.82rem;color:rgba(255,255,255,.3);letter-spacing:.08em;animation:fadeIn 1s ease 1s both;}
+.p1-nav-btn{margin-top:36px;background:linear-gradient(135deg,#7b5ea7,#b388ff);border:none;border-radius:50px;color:#fff;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:600;padding:14px 40px;cursor:pointer;box-shadow:0 8px 28px rgba(123,94,167,.4);transition:transform .2s;animation:fadeIn 1s ease 1.2s both;-webkit-tap-highlight-color:transparent;}
+.p1-nav-btn:hover{transform:scale(1.06);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* ════════════════════════════════════
+   PAGE 2 — LETTER
+════════════════════════════════════ */
+#p2{background:linear-gradient(160deg,rgba(10,0,26,.62) 0%,rgba(2,10,32,.62) 50%,rgba(10,0,16,.62) 100%);}
+.p2-content{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px clamp(16px,5vw,60px);}
+.letter-wrap{max-width:600px;width:100%;}
+.letter-top{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.letter-icon{font-size:2.2rem;animation:heartbeat 2s ease-in-out infinite;}
+@keyframes heartbeat{0%,100%{transform:scale(1);}14%{transform:scale(1.12);}28%{transform:scale(1);}42%{transform:scale(1.07);}70%{transform:scale(1);}}
+.letter-heading{font-family:'Playfair Display',serif;font-size:clamp(1.3rem,4.5vw,2.2rem);background:linear-gradient(135deg,#f093fb,#f5576c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.letter-divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);margin:0 0 24px;}
+.letter-body{font-family:'Hind Siliguri',sans-serif;font-size:clamp(.88rem,2.8vw,1.1rem);line-height:1.95;color:rgba(255,255,255,.82);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:clamp(16px,4vw,32px);}
+.letter-sign{margin-top:20px;font-family:'Playfair Display',serif;font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.5);text-align:right;}
+.page-nav-row{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap;}
+.page-nav-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:#fff;font-family:'Poppins',sans-serif;font-size:.88rem;padding:12px 26px;border-radius:50px;cursor:pointer;transition:background .2s;-webkit-tap-highlight-color:transparent;}
+.page-nav-btn:hover,.page-nav-btn:active{background:rgba(255,255,255,.18);}
+.page-nav-btn.primary{background:linear-gradient(135deg,#f5576c,#f093fb);border:none;box-shadow:0 6px 20px rgba(245,87,108,.35);}
+
+/* ════════════════════════════════════
+   PAGE 3 — WISHES
+════════════════════════════════════ */
+#p3{background:radial-gradient(ellipse at 60% 40%,rgba(0,16,40,.60) 0%,rgba(5,3,15,.55) 70%);}
+.p3-content{min-height:100%;padding:40px clamp(16px,5vw,40px);display:flex;flex-direction:column;align-items:center;}
+.p3-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,5vw,2.4rem);text-align:center;margin-bottom:28px;background:linear-gradient(135deg,#fee140,#f5576c);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.wish-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:14px;max-width:720px;width:100%;margin-bottom:28px;}
+.wish-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px 18px;display:flex;flex-direction:column;gap:8px;transition:transform .2s,background .2s;cursor:default;}
+.wish-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.1);}
+.wish-icon{font-size:1.8rem;}
+.wish-head{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;}
+.wish-text{font-family:'Hind Siliguri',sans-serif;font-size:.88rem;color:rgba(255,255,255,.65);line-height:1.7;}
+
+/* ════════════════════════════════════
+   PAGE 4 — CELEBRATION
+════════════════════════════════════ */
+#p4{background:radial-gradient(ellipse at 50% 60%,rgba(32,0,16,.60) 0%,rgba(5,3,15,.52) 70%);}
+#p4-canvas{position:absolute;inset:0;z-index:0;}
+.p4-content{position:relative;z-index:1;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 24px;}
+.p4-title{font-family:'Pacifico',cursive;font-size:clamp(2rem,9vw,4.5rem);background:linear-gradient(135deg,#f5c842,#f5576c,#b388ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:titlePulse 3s ease-in-out infinite;}
+@keyframes titlePulse{0%,100%{filter:drop-shadow(0 0 20px rgba(245,200,66,.3));}50%{filter:drop-shadow(0 0 40px rgba(245,87,108,.5));}}
+.p4-sub{font-size:clamp(.9rem,3vw,1.3rem);color:rgba(255,255,255,.6);margin:12px 0 28px;font-weight:300;}
+.cake-row{font-size:clamp(3rem,14vw,6rem);margin-bottom:20px;animation:cakeFloat 3s ease-in-out infinite;}
+@keyframes cakeFloat{0%,100%{transform:translateY(0) rotate(-3deg);}50%{transform:translateY(-12px) rotate(3deg);}}
+.bangla-wish{font-family:'Hind Siliguri',sans-serif;font-size:clamp(.9rem,3.5vw,1.2rem);color:rgba(255,255,255,.78);line-height:2;max-width:480px;width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:clamp(16px,4vw,28px);margin:0 auto 28px;}
+.confetti-btn{background:linear-gradient(135deg,#fee140,#f5576c);border:none;border-radius:50px;color:#fff;font-family:'Poppins',sans-serif;font-size:.92rem;font-weight:700;padding:14px 36px;cursor:pointer;box-shadow:0 8px 28px rgba(245,87,108,.4);transition:transform .2s;-webkit-tap-highlight-color:transparent;}
+.confetti-btn:hover,.confetti-btn:active{transform:scale(1.06);}
+.replay-hint{margin-top:14px;font-size:.75rem;color:rgba(255,255,255,.28);}
+
+/* ─── Balloons (page 4) ─── */
+#p4-balloons{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.balloon{position:absolute;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;animation:balloonRise linear forwards;}
+.balloon::before{content:'';position:absolute;bottom:-7px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:9px solid var(--bcolor);}
+.balloon::after{content:'';position:absolute;bottom:-36px;left:50%;transform:translateX(-50%);width:1.5px;height:28px;background:rgba(255,255,255,.4);border-radius:2px;}
+@keyframes balloonRise{
+  0%  {transform:translateY(0) translateX(0);opacity:0;}
+  7%  {opacity:.92;}
+  93% {opacity:.85;}
+  100%{transform:translateY(calc(-100vh - 180px)) translateX(var(--sway));opacity:0;}
+}
+
+/* ─── Confetti ─── */
+#confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:200;}
+
+/* ─── Start overlay ─── */
+#start-overlay{position:fixed;inset:0;background:#05030f;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;z-index:300;text-align:center;padding:24px;}
+#start-overlay .so-emoji{font-size:5rem;animation:soFloat 3s ease-in-out infinite;filter:drop-shadow(0 0 32px rgba(179,136,255,.4));}
+@keyframes soFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+#start-overlay h1{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,6vw,2.6rem);background:linear-gradient(135deg,#b388ff,#f5576c,#fee140);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.3;}
+#start-overlay p{color:rgba(255,255,255,.35);font-size:.86rem;max-width:300px;}
+#start-btn{background:linear-gradient(135deg,#7b5ea7,#f5576c);border:none;border-radius:50px;color:#fff;font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;padding:16px 48px;cursor:pointer;box-shadow:0 10px 32px rgba(123,94,167,.5);transition:transform .2s;-webkit-tap-highlight-color:transparent;}
+#start-btn:hover{transform:scale(1.06);}
+
+/* ════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 600px)
+════════════════════════════════════ */
+@media (max-width:600px){
+  /* Show bottom nav, hide top tabs on mobile */
+  #nav-tabs{display:none;}
+  #bottom-nav{display:flex;}
+
+  /* Pages fill from top nav to bottom nav */
+  #pages{bottom:62px;}
+
+  /* Page 1 */
+  .p1-content{padding:32px 20px 24px;}
+  .p1-nav-btn{padding:13px 32px;font-size:.9rem;}
+
+  /* Page 2 — start from top on mobile, don't try to center vertically */
+  .p2-content{justify-content:flex-start;padding:28px 16px 24px;}
+  .letter-body{font-size:.9rem;}
+
+  /* Page 3 — single column cards, horizontal layout inside card */
+  .p3-content{padding:28px 14px 20px;}
+  .wish-grid{grid-template-columns:1fr;}
+  .wish-card{flex-direction:row;align-items:flex-start;gap:14px;padding:16px 14px;}
+  .wish-icon{font-size:1.6rem;min-width:30px;padding-top:2px;}
+
+  /* Page 4 */
+  .p4-content{padding:32px 18px 24px;}
+  .bangla-wish{padding:16px 14px;}
+  .confetti-btn{padding:13px 28px;}
+
+  /* Start overlay emoji smaller on small screens */
+  #start-overlay .so-emoji{font-size:4rem;}
+}
+
+/* ════════════════════════════════════
+   RESPONSIVE — TABLET (601px–900px)
+════════════════════════════════════ */
+@media (min-width:601px) and (max-width:900px){
+  .nav-tab{font-size:.72rem;padding:5px 9px;}
+  .wish-grid{grid-template-columns:repeat(2,1fr);}
+}
+</style>
+</head>
+<body>
+
+<audio id="bgm" loop preload="none"><source src="music.mpeg" type="audio/mpeg"/></audio>
+<canvas id="confetti-canvas"></canvas>
+
+<!-- PHOTO COLLAGE BACKGROUND -->
+<div id="photo-bg">
+  <div class="pb-wrap">
+    <div class="pb-cell"><img src="photos/p1.jpg" alt=""/></div>
+    <div class="pb-cell"><img src="photos/p2.jpg" alt=""/></div>
+    <div class="pb-cell"><img src="photos/p3.jpg" alt=""/></div>
+    <div class="pb-cell"><img src="photos/p4.jpg" alt=""/></div>
+    <div class="pb-cell"><img src="photos/p5.jpg" alt=""/></div>
+    <div class="pb-cell"><img src="photos/p6.jpg" alt=""/></div>
+  </div>
+  <div id="pb-overlay"></div>
+</div>
+
+<!-- TOP NAV -->
+<nav id="nav">
+  <div id="nav-logo">Nomita 🎂</div>
+  <div id="nav-tabs">
+    <button class="nav-tab active" onclick="goPage(1)">🌸 স্বাগত</button>
+    <button class="nav-tab" onclick="goPage(2)">💌 চিঠি</button>
+    <button class="nav-tab" onclick="goPage(3)">🌟 শুভকামনা</button>
+    <button class="nav-tab" onclick="goPage(4)">🎉 উৎসব</button>
+  </div>
+  <button id="nav-music" onclick="toggleMusic()">🎵</button>
+</nav>
+
+<!-- BOTTOM NAV (mobile) -->
+<div id="bottom-nav">
+  <button class="bnav-tab active" onclick="goPage(1)">
+    <span class="bnav-icon">🌸</span><span>স্বাগত</span>
+  </button>
+  <button class="bnav-tab" onclick="goPage(2)">
+    <span class="bnav-icon">💌</span><span>চিঠি</span>
+  </button>
+  <button class="bnav-tab" onclick="goPage(3)">
+    <span class="bnav-icon">🌟</span><span>শুভকামনা</span>
+  </button>
+  <button class="bnav-tab" onclick="goPage(4)">
+    <span class="bnav-icon">🎉</span><span>উৎসব</span>
+  </button>
+</div>
+
+<!-- PAGES -->
+<div id="pages">
+
+  <!-- Page 1: Welcome -->
+  <div class="page active" id="p1">
+    <canvas id="p1-canvas"></canvas>
+    <div class="p1-content">
+      <div class="p1-badge">✦ আজ বিশেষ একটি দিন ✦</div>
+      <div class="p1-name">Nomita</div>
+      <div class="p1-subtitle">তোমার জন্মদিনে স্বাগত 🌸</div>
+      <div class="p1-date">🎂 আজকের দিনটি শুধুই তোমার</div>
+      <button class="p1-nav-btn" onclick="goPage(2)">চিঠি পড়ো →</button>
+    </div>
+  </div>
+
+  <!-- Page 2: Letter -->
+  <div class="page" id="p2">
+    <div class="p2-content">
+      <div class="letter-wrap">
+        <div class="letter-top">
+          <div class="letter-icon">💌</div>
+          <div class="letter-heading">প্রিয় Nomita-কে</div>
+        </div>
+        <div class="letter-divider"></div>
+        <div class="letter-body">
+          শুভ জন্মদিন! আমার পাশে থাকার জন্য এবং আমাকে অসীম ভালোবাসায় আগলে রাখার জন্য তোমাকে ধন্যবাদ।<br/><br/>
+          তুমি আমার জীবনে এমন একজন যাকে ছাড়া সব কিছু অসম্পূর্ণ লাগে। তোমার হাসি, তোমার যত্ন, তোমার উপস্থিতি — সব কিছু আমাকে প্রতিদিন অনুপ্রাণিত করে।<br/><br/>
+          এই বিশেষ দিনে তোমার জন্য রইল এক আকাশ ভালোবাসা আর অজস্র চুমু। আজকের দিনটা তোমার মতোই অসাধারণ হোক।<br/><br/>
+          তোমাকে ভালোবাসি, সবসময়। 💖
+        </div>
+        <div class="letter-sign">— তোমার আপন ♥</div>
+        <div class="page-nav-row">
+          <button class="page-nav-btn" onclick="goPage(1)">← ফিরে যাও</button>
+          <button class="page-nav-btn primary" onclick="goPage(3)">শুভকামনা দেখো →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 3: Wishes -->
+  <div class="page" id="p3">
+    <div class="p3-content">
+      <div class="p3-title">🌟 তোমার জন্য শুভকামনা</div>
+      <div class="wish-grid">
+        <div class="wish-card">
+          <div class="wish-icon">💖</div>
+          <div>
+            <div class="wish-head">ভালোবাসা</div>
+            <div class="wish-text">তোমার জীবন ভালোবাসায় পূর্ণ থাকুক। প্রতিটি মুহূর্তে অনুভব করো কেউ তোমাকে অসীম ভালোবাসে।</div>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-icon">🌸</div>
+          <div>
+            <div class="wish-head">সুখ</div>
+            <div class="wish-text">তোমার হাসি কখনো মিলিয়ে না যাক। প্রতিটি দিন তোমার কাছে উপহারের মতো হোক।</div>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-icon">🌟</div>
+          <div>
+            <div class="wish-head">স্বপ্ন</div>
+            <div class="wish-text">তোমার প্রতিটি স্বপ্ন বাস্তব হোক। আকাশছোঁয়া উচ্চাকাঙ্ক্ষা পূরণ হোক একে একে।</div>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-icon">🕊️</div>
+          <div>
+            <div class="wish-head">শান্তি</div>
+            <div class="wish-text">জীবনের প্রতিটি ঝড়ের পরে তুমি যেন শান্তির নীড় খুঁজে পাও।</div>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-icon">💪</div>
+          <div>
+            <div class="wish-head">সাহস</div>
+            <div class="wish-text">যেকোনো বাধার মুখে মাথা উঁচু রাখো। তোমার শক্তি অসীম।</div>
+          </div>
+        </div>
+        <div class="wish-card">
+          <div class="wish-icon">🎉</div>
+          <div>
+            <div class="wish-head">আনন্দ</div>
+            <div class="wish-text">আজকের মতো প্রতিটি জন্মদিন হোক স্মরণীয়, প্রতিটি মুহূর্ত হোক উৎসবমুখর।</div>
+          </div>
+        </div>
+      </div>
+      <div class="page-nav-row">
+        <button class="page-nav-btn" onclick="goPage(2)">← চিঠি</button>
+        <button class="page-nav-btn primary" onclick="goPage(4)">উৎসবে যাও 🎉</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Page 4: Celebration -->
+  <div class="page" id="p4">
+    <canvas id="p4-canvas"></canvas>
+    <div id="p4-balloons"></div>
+    <div class="p4-content">
+      <div class="cake-row">🎂</div>
+      <div class="p4-title">শুভ জন্মদিন!</div>
+      <div class="p4-sub">Happy Birthday, Nomita 🎊</div>
+      <div class="bangla-wish">
+        এই বিশেষ দিনে তোমার জন্য রইল<br/>
+        এক আকাশ ভালোবাসা আর অজস্র চুমু।<br/>
+        তোমাকে ভালোবাসি, সবসময়। 💖
+      </div>
+      <button class="confetti-btn" onclick="launchCelebration()">🎉 উৎসব শুরু করো!</button>
+      <div class="replay-hint">আবার চাপলে আবার শুরু হবে ✨</div>
+    </div>
+  </div>
+
+</div><!-- /pages -->
+
+<!-- START OVERLAY -->
+<div id="start-overlay">
+  <div class="so-emoji">🎂</div>
+  <h1>Nomita-র জন্মদিনের<br/>বিশেষ উপহার 🎁</h1>
+  <p>চারটি অধ্যায়ে ভরা এক অনন্য অভিজ্ঞতা — তোমার জন্য।</p>
+  <button id="start-btn" onclick="startApp()">শুরু করো ✨</button>
+</div>
+
+<script>
+// ── Detect mobile ──
+function isMobile(){return window.innerWidth<=600;}
+
+
+// ── Star field (page 1) ──
+(function(){
+  const c=document.getElementById('p1-canvas');
+  const ctx=c.getContext('2d');
+  let stars=[];
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight;buildStars();}
+  function buildStars(){stars=[];for(let i=0;i<180;i++)stars.push({x:Math.random()*c.width,y:Math.random()*c.height,r:.5+Math.random()*1.5,o:Math.random(),s:.005+Math.random()*.01,d:Math.random()>.5?1:-1});}
+  function draw(){ctx.clearRect(0,0,c.width,c.height);stars.forEach(s=>{s.o+=s.s*s.d;if(s.o>1||s.o<0)s.d*=-1;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(255,255,255,${s.o})`;ctx.fill();});requestAnimationFrame(draw);}
+  resize();window.addEventListener('resize',resize);draw();
+})();
+
+// ── Fireworks (page 4) ──
+(function(){
+  const c=document.getElementById('p4-canvas');
+  const ctx=c.getContext('2d');
+  let particles=[];
+  function navH(){return isMobile()?56+62:56;}
+  function resize(){c.width=window.innerWidth;c.height=window.innerHeight-navH();}
+  function spawnFirework(x,y){
+    const cols=['#f5c842','#f5576c','#b388ff','#4facfe','#43e97b','#fff','#f093fb'];
+    const col=cols[Math.floor(Math.random()*cols.length)];
+    for(let i=0;i<60;i++){const ang=Math.random()*Math.PI*2,sp=2+Math.random()*6;particles.push({x,y,vx:Math.cos(ang)*sp,vy:Math.sin(ang)*sp,color:col,op:1,r:2+Math.random()*2.5});}
+  }
+  let af4=null,p4Interval=null;
+  function draw4(){ctx.clearRect(0,0,c.width,c.height);particles.forEach(p=>{p.vy+=.06;p.x+=p.vx;p.y+=p.vy;p.op-=.018;ctx.globalAlpha=Math.max(0,p.op);ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.color;ctx.fill();});ctx.globalAlpha=1;particles=particles.filter(p=>p.op>0);af4=requestAnimationFrame(draw4);}
+  const BCOLORS=['#f5576c','#f5c842','#b388ff','#4facfe','#43e97b','#f093fb','#ff9a56','#ff6b9d','#56cbf9'];
+  let balloonInterval=null;
+  function spawnBalloon(){
+    const wrap=document.getElementById('p4-balloons');
+    const b=document.createElement('div');
+    b.className='balloon';
+    const sz=38+Math.random()*28;
+    const col=BCOLORS[Math.floor(Math.random()*BCOLORS.length)];
+    const dur=6+Math.random()*5;
+    const sway=((Math.random()-.5)*100)+'px';
+    const left=4+Math.random()*88;
+    b.style.cssText=`width:${sz}px;height:${sz*1.22}px;background:radial-gradient(circle at 35% 28%,rgba(255,255,255,.45),${col});--bcolor:${col};left:${left}%;bottom:-${sz*2}px;animation-duration:${dur}s;--sway:${sway};`;
+    wrap.appendChild(b);
+    setTimeout(()=>b.remove(),(dur+.2)*1000);
+  }
+  window._startP4=function(){resize();cancelAnimationFrame(af4);particles=[];draw4();clearInterval(p4Interval);p4Interval=setInterval(()=>{if(document.getElementById('p4').classList.contains('active'))spawnFirework(Math.random()*c.width,Math.random()*(c.height*.6));},800);clearInterval(balloonInterval);spawnBalloon();balloonInterval=setInterval(spawnBalloon,1200);};
+  window._stopP4=function(){clearInterval(p4Interval);clearInterval(balloonInterval);document.getElementById('p4-balloons').innerHTML='';};
+  resize();window.addEventListener('resize',()=>{resize();});
+})();
+
+// ── Page routing ──
+let activePage=1;
+function goPage(n){
+  if(n===activePage)return;
+  if(activePage===4)window._stopP4&&window._stopP4();
+  document.getElementById('p'+activePage).classList.remove('active');
+  // update top tabs
+  document.querySelectorAll('.nav-tab').forEach((t,i)=>t.classList.toggle('active',i===n-1));
+  // update bottom tabs
+  document.querySelectorAll('.bnav-tab').forEach((t,i)=>t.classList.toggle('active',i===n-1));
+  activePage=n;
+  document.getElementById('p'+n).classList.add('active');
+  if(n===4){window._startP4&&window._startP4();setTimeout(launchCelebration,600);}
+}
+
+// ── Confetti ──
+const cCanvas=document.getElementById('confetti-canvas');
+const cCtx=cCanvas.getContext('2d');
+let cP=[],cR=false,cRaf2=null;
+function resizeC(){cCanvas.width=window.innerWidth;cCanvas.height=window.innerHeight;}
+resizeC();window.addEventListener('resize',resizeC);
+const COLS=['#b388ff','#f5576c','#4facfe','#fff','#fee140','#f093fb','#43e97b'];
+function spawnC(n){for(let i=0;i<n;i++)cP.push({x:Math.random()*cCanvas.width,y:-10,r:3+Math.random()*5,color:COLS[Math.floor(Math.random()*COLS.length)],ta:0,ts:.05+Math.random()*.05,vy:2+Math.random()*3,vx:(Math.random()-.5)*2.5,op:1});}
+function drawC(){cCtx.clearRect(0,0,cCanvas.width,cCanvas.height);cP.forEach(p=>{p.ta+=p.ts;p.y+=p.vy;p.x+=p.vx+Math.sin(p.ta)*1.2;p.op-=.005;cCtx.save();cCtx.globalAlpha=Math.max(0,p.op);cCtx.fillStyle=p.color;cCtx.beginPath();cCtx.ellipse(p.x,p.y,p.r,p.r*.45,p.ta,0,Math.PI*2);cCtx.fill();cCtx.restore();});cP=cP.filter(p=>p.y<cCanvas.height+20&&p.op>0);if(cR||cP.length>0)cRaf2=requestAnimationFrame(drawC);}
+function startConfetti(){cR=true;spawnC(250);const b=setInterval(()=>{if(!cR){clearInterval(b);return;}spawnC(60);},700);setTimeout(()=>{cR=false;clearInterval(b);},6000);cancelAnimationFrame(cRaf2);drawC();}
+function launchCelebration(){startConfetti();}
+
+// ── Music ──
+let musicOn=true;
+function toggleMusic(){const bgm=document.getElementById('bgm');const btn=document.getElementById('nav-music');musicOn=!musicOn;musicOn?(bgm.play(),btn.textContent='🎵'):(bgm.pause(),btn.textContent='🔇');}
+
+// ── Start ──
+function startApp(){document.getElementById('start-overlay').style.display='none';const bgm=document.getElementById('bgm');bgm.volume=0.35;bgm.play().catch(()=>{});}
+</script>
+</body>
+</html>
